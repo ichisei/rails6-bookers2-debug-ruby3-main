@@ -1,5 +1,5 @@
 class RelationshipsController < ApplicationController
-  
+
   def create
     current_user.follow(params[:user_id])
     redirect_to request.referer
@@ -7,15 +7,15 @@ class RelationshipsController < ApplicationController
 
   def destroy
     current_user.unfollow(params[:user_id])
-    redirect_to request.referer  
+    redirect_to request.referer
   end
 
   # フォロー一覧
-  def followings 
+  def followings
     user = User.find(params[:user_id])
     @users = user.followings
   end
-  
+
   # フォロワー一覧
   def followers
     user = User.find(params[:user_id])
@@ -23,9 +23,9 @@ class RelationshipsController < ApplicationController
   end
 
 end
-  
-  
-  
+
+
+
 # def create
 #     user = User.find(params[:user_id])
 #     relationships = Relationship.new(followed_id: user_id)
@@ -39,9 +39,9 @@ end
 #     relationship = favorites.find_by(followed_id: current_user_id)
 #     relationship.destroy
 #     redirect_to request.referer
-#   end  
-  
-  
-  
-  
-  
+#   end
+
+
+
+
+
