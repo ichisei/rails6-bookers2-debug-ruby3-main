@@ -1,0 +1,22 @@
+<div>
+  <% book.book_comments.each do |book_comment| %>
+  <table class='table'>
+    <tr>
+      <td><%= image_tag book_comment.user.get_profile_image, size:"100x100" %></td>
+      <td><%= book_comment.comment %></td>
+      <% if book_comment.user == current_user %>
+      <td><%= link_to 'Destroy', book_book_comment_path(book,book_comment) ,method: :DELETE, remote: true, class: "btn btn-sm btn-danger"%></td>
+      <% end %>
+    </tr>
+  </table>
+    <P><%= book_comment.user.name %></P>
+  <% end %>
+</div>
+<div>
+  <%= form_with(model: [book, book_comment], local: false) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :comment, class: "form-control" %>
+    </div>
+    <%= f.submit "送信" %>
+  <% end %>
+</div>
